@@ -1,21 +1,21 @@
 {
-    "name": "nusphere/nusoap",
-    "version": "0.9.5",
+    "name": "monomelodies/newsoap",
+    "version": "0.1.0",
     "type": "library",
-    "description": "NuSoap Repository for Composer with some fixes",
+    "description": "PHP Soap client based on NuSoap",
     "authors": [
         {
-            "name": "Wooxo SA",
-            "email": "dev@wooxo.fr"
+            "name": "Marijn Ophorst",
+            "email": "marijn@monomelodies.nl"
         }
     ],
     "license": "MIT",
     "keywords": ["nusoap", "php", "composer"],
-    "homepage": "https://github.com/wooxo/nusoap",
+    "homepage": "https://github.com/monomelodies/newsoap",
     "autoload": {
-      "classmap": [
-        "lib/"
-      ]
+        "psr-4": {
+            "Newsoap\\": "src"
+        }
     },
     "minimum-stability": "stable"
 }

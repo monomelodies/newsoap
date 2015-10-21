@@ -634,7 +634,7 @@ class HttpTransport extends Base
         // read chunk-size, chunk-extension (if any) and CRLF
         // get the position of the linebreak
         $chunkend = strpos($buffer, $lb);
-        if ($chunkend == FALSE) {
+        if ($chunkend == false) {
             $this->debug('no linebreak found in decodeChunked');
             return $new;
         }
@@ -647,7 +647,7 @@ class HttpTransport extends Base
             $chunkend = strpos( $buffer, $lb, $chunkstart + $chunk_size);
             
             // Just in case we got a broken connection
-            if ($chunkend == FALSE) {
+            if ($chunkend == false) {
                 $chunk = substr($buffer,$chunkstart);
                 // append chunk-data to entity-body
                 $new .= $chunk;
@@ -665,7 +665,7 @@ class HttpTransport extends Base
             $chunkstart = $chunkend + strlen($lb);
             
             $chunkend = strpos($buffer, $lb, $chunkstart) + strlen($lb);
-            if ($chunkend == FALSE) {
+            if ($chunkend == false) {
                 break; //Just in case we got a broken connection
             }
             $temp = substr($buffer,$chunkstart,$chunkend-$chunkstart);
@@ -1216,7 +1216,7 @@ class HttpTransport extends Base
         }
                         
         $cookie_param = ';secure;';
-        if (strpos($cookie_str, $cookie_param) !== FALSE) {
+        if (strpos($cookie_str, $cookie_param) !== false) {
             $secure = true;
         } else {
             $secure = false;

@@ -975,25 +975,3 @@ function iso8601_to_timestamp($datestr){
 	}
 }
 
-/**
-* sleeps some number of microseconds
-*
-* @param    string $usec the number of microseconds to sleep
-* @access   public
-* @deprecated
-*/
-function usleepWindows($usec)
-{
-	$start = gettimeofday();
-	
-	do
-	{
-		$stop = gettimeofday();
-		$timePassed = 1000000 * ($stop['sec'] - $start['sec'])
-		+ $stop['usec'] - $start['usec'];
-	}
-	while ($timePassed < $usec);
-}
-
-
-?>

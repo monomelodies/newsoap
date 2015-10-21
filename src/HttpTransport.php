@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Newsoap;
 
 
 /**
@@ -12,7 +12,7 @@
 * @version  $Id: class.soap_transport_http.php,v 1.68 2010/04/26 20:15:08 snichol Exp $
 * @access public
 */
-class soap_transport_http extends nusoap_base {
+class HttpTransport extends Base {
 
 	var $url = '';
 	var $uri = '';
@@ -57,8 +57,8 @@ class soap_transport_http extends nusoap_base {
 	* @param boolean $use_curl Whether to try to force cURL use
 	* @access public
 	*/
-	function soap_transport_http($url, $curl_options = NULL, $use_curl = false){
-		parent::nusoap_base();
+	function __construct($url, $curl_options = NULL, $use_curl = false){
+		parent::__construct();
 		$this->debug("ctor url=$url use_curl=$use_curl curl_options:");
 		$this->appendDebug($this->varDump($curl_options));
 		$this->setURL($url);

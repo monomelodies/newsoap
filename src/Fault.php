@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Newsoap;
 
 
 /**
@@ -11,7 +11,7 @@
 * @version  $Id: class.soap_fault.php,v 1.14 2007/04/11 15:49:47 snichol Exp $
 * @access public
 */
-class nusoap_fault extends nusoap_base {
+class Fault extends Base {
 	/**
 	 * The fault code (client|server)
 	 * @var string
@@ -45,7 +45,7 @@ class nusoap_fault extends nusoap_base {
     * @param string $faultstring human readable error message
     * @param mixed $faultdetail detail, typically a string or array of string
 	*/
-	function nusoap_fault($faultcode,$faultactor='',$faultstring='',$faultdetail=''){
+	function __construct($faultcode,$faultactor='',$faultstring='',$faultdetail=''){
 		parent::nusoap_base();
 		$this->faultcode = $faultcode;
 		$this->faultactor = $faultactor;

@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Newsoap;
 
 
 /**
@@ -12,7 +12,7 @@
 * @version  $Id: class.soap_parser.php,v 1.42 2010/04/26 20:15:08 snichol Exp $
 * @access   public
 */
-class nusoap_parser extends nusoap_base {
+class Parser extends Base {
 
 	var $xml = '';
 	var $xml_encoding = '';
@@ -57,8 +57,8 @@ class nusoap_parser extends nusoap_base {
 	* @param    string $decode_utf8 whether to decode UTF-8 to ISO-8859-1
 	* @access   public
 	*/
-	function nusoap_parser($xml,$encoding='UTF-8',$method='',$decode_utf8=true){
-		parent::nusoap_base();
+	function __construct($xml,$encoding='UTF-8',$method='',$decode_utf8=true){
+		parent::__construct();
 		$this->xml = $xml;
 		$this->xml_encoding = $encoding;
 		$this->method = $method;
@@ -633,11 +633,3 @@ class nusoap_parser extends nusoap_base {
 	}
 }
 
-/**
- * Backward compatibility
- */
-class soap_parser extends nusoap_parser {
-}
-
-
-?>

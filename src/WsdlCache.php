@@ -1,4 +1,7 @@
 <?php
+
+namespace Newsoap;
+
 /*
 The NuSOAP project home is:
 http://sourceforge.net/projects/nusoap/
@@ -15,7 +18,7 @@ nusoap-general@lists.sourceforge.net
 * @version  $Id: class.wsdlcache.php,v 1.7 2007/04/17 16:34:03 snichol Exp $
 * @access public 
 */
-class nusoap_wsdlcache {
+class WsdlCache {
 	/**
 	 *	@var resource
 	 *	@access private
@@ -44,7 +47,7 @@ class nusoap_wsdlcache {
 	* @param integer $cache_lifetime lifetime for caching-files in seconds or 0 for unlimited
 	* @access public
 	*/
-	function nusoap_wsdlcache($cache_dir='.', $cache_lifetime=0) {
+	function __construct($cache_dir='.', $cache_lifetime=0) {
 		$this->fplock = array();
 		$this->cache_dir = $cache_dir != '' ? $cache_dir : '.';
 		$this->cache_lifetime = $cache_lifetime;

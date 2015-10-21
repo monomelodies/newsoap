@@ -1,4 +1,7 @@
 <?php
+
+namespace Newsoap;
+
 /*
 $Id: nusoapmime.php,v 1.13 2010/04/26 20:15:08 snichol Exp $
 
@@ -51,7 +54,7 @@ require_once('Mail/mimePart.php');
 * @version  $Id: nusoapmime.php,v 1.13 2010/04/26 20:15:08 snichol Exp $
 * @access   public
 */
-class nusoap_client_mime extends nusoap_client {
+class Mime extends Client {
 	/**
 	 * @var array Each array element in the return is an associative array with keys
 	 * data, filename, contenttype, cid

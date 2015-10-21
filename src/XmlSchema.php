@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Newsoap;
 
 
 /**
@@ -12,7 +12,7 @@
 * @version  $Id: class.xmlschema.php,v 1.53 2010/04/26 20:15:08 snichol Exp $
 * @access   public
 */
-class nusoap_xmlschema extends nusoap_base  {
+class XmlSchema extends Base  {
 	
 	// files
 	var $schema = '';
@@ -51,8 +51,8 @@ class nusoap_xmlschema extends nusoap_base  {
 	* @param	string $namespaces namespaces defined in enclosing XML
 	* @access   public
 	*/
-	function nusoap_xmlschema($schema='',$xml='',$namespaces=array()){
-		parent::nusoap_base();
+	function __construct($schema='',$xml='',$namespaces=array()){
+		parent::__construct();
 		$this->debug('nusoap_xmlschema class instantiated, inside constructor');
 		// files
 		$this->schema = $schema;
@@ -963,11 +963,3 @@ class nusoap_xmlschema extends nusoap_base  {
 	}
 }
 
-/**
- * Backward compatibility
- */
-class XMLSchema extends nusoap_xmlschema {
-}
-
-
-?>

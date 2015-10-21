@@ -1227,14 +1227,9 @@ class HttpTransport extends Base
         if ($sep_pos) {
             $name = substr($value_str, 0, $sep_pos);
             $value = substr($value_str, $sep_pos + 1);
-            $cookie= array( 'name' => $name,
-                            'value' => $value,
-                            'domain' => $domain,
-                            'path' => $path,
-                            'expires' => $expires,
-                            'secure' => $secure
-                            );      
-            return $cookie;
+            return compact(
+                'name', 'value', 'domain', 'path', 'expires', 'secure'
+            );
         }
         return false;
     }

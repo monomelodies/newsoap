@@ -66,8 +66,7 @@ class HttpTransport extends Base {
 			$this->ch_options = $curl_options;
 		}
 		$this->use_curl = $use_curl;
-		preg_match('/\$Revisio' . 'n: ([^ ]+)/', $this->revision, $rev);
-		$this->setHeader('User-Agent', $this->title.'/'.$this->version.' ('.$rev[1].')');
+		$this->setHeader('User-Agent', $this->title.'/'.$this->version);
 	}
 
 	/**

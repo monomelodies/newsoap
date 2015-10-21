@@ -964,19 +964,7 @@ class HttpTransport extends Base {
 
         $cErr = curl_error($this->ch);
 		if ($cErr != '') {
-        	$err = 'cURL ERROR: '.curl_errno($this->ch).': '.$cErr.'<br>';
-        	// TODO: there is a PHP bug that can cause this to SEGV for CURLINFO_CONTENT_TYPE
-			foreach(curl_getinfo($this->ch) as $k => $v){
-				$err .= "$k: $v<br>";
-			}
-			$this->debug($err);
-			$this->setError($err);
-			curl_close($this->ch);
-	    	return false;
-		} else {
-			//echo '<pre>';
-			//var_dump(curl_getinfo($this->ch));
-			//echo '</pre>';
+            throw new ServiceException($cErr, curl_error($this->ch));
 		}
 		// close curl
 		$this->debug('No cURL error, closing cURL');

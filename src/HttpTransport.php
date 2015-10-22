@@ -38,7 +38,7 @@ class HttpTransport extends Base
     public $username = '';
     public $password = '';
     public $authtype = '';
-    public $digestRequest = []);
+    public $digestRequest = [];
     public $certRequest = [];   // keys must be cainfofile (optional), sslcertfile, sslkeyfile, passphrase, certpassword (optional), verifypeer (optional), verifyhost (optional)
                                 // cainfofile: certificate authority file, e.g. '$pathToPemFiles/rootca.pem'
                                 // sslcertfile: SSL certificate file, e.g. '$pathToPemFiles/mycert.pem'
@@ -404,7 +404,7 @@ class HttpTransport extends Base
     * @return   string data
     * @access   public
     */
-    public function send($data, $timeout = 0, $response_timeout = 30, $cookies = nul)
+    public function send($data, $timeout = 0, $response_timeout = 30, array $cookies = null)
     {   
         $this->debug('entered send() with data of length: '.strlen($data));
         $this->tryagain = true;

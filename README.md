@@ -31,7 +31,7 @@ Basically the same as `nusoap`, with currently two notable exceptions:
    want to change them, constructors with a gazillion arguments are bad
    practive).
 2. On failure, `Newsoap` doesn't silently "log" errors but throws an exception
-   of the type `Newsoap\ServiceException`.
+   of the type `Newsoap\ServiceException` or `Newsoap\FaultException`.
 
 ## Todos
 - Modernize more code

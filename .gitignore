@@ -1,0 +1,23 @@
+# vim swapfiles
+.*.sw*
+
+# Kate swapfiles
+*~
+
+# Emacs swapfiles
+.\#*
+
+# Mercurial backups
+*.orig
+
+# Mac swapfile
+._*
+
+# You can rename these depending on your liking:
+.sass-cache
+.twig-cache
+
+# Common repositories
+vendor
+bower_components
+node_modules

@@ -957,7 +957,7 @@ class HttpTransport extends Base
             
             $cErr = curl_error($this->ch);
             if ($cErr != '') {
-                throw new ServiceException($cErr, curl_error($this->ch));
+                throw new ServiceException($cErr, curl_errno($this->ch));
             }
             // close curl
             $this->debug('No cURL error, closing cURL');

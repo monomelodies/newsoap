@@ -307,7 +307,7 @@ class Client extends Base
                         $return['faultstring'] = implode("\n", $return['faultstring']);
                     }
                 }
-                throw new FaultException($return['faultstring'], $return['faultcode']);
+                throw new FaultException($return['faultstring']);
             } elseif ($style == 'document') {
                 // NOTE: if the response is defined to have multiple parts (i.e. unwrapped),
                 // we are only going to return the first part here...sorry about that

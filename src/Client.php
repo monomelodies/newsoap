@@ -56,6 +56,17 @@ class Client extends Base
     public $bindingType = '';          // WSDL operation binding type
     public $use_curl = false;          // whether to always try to use cURL
 
+    /**
+     * @var string Stores the response retrieved by the last call (e.g. for
+     *  logging purposes, analysis or debugging).
+     */
+    private $lastResponse;
+    /**
+     * @var array Stores the headers returned by the last call (e.g. for
+     *  logging purposes, analysis or debugging).
+     */
+    private $lastResponseHeaders;
+
     /*
      * fault related variables
      */
@@ -420,7 +431,7 @@ class Client extends Base
     {
         $this->checkCookies();
         // detect transport
-        switch(true) {
+        switch (true) {
             // http(s)
             case preg_match('/^http/',$this->endpoint):
                 $this->debug('transporting via HTTP');
@@ -493,6 +504,8 @@ class Client extends Base
     */
     private function parseResponse($headers, $data)
     {
+        $this->lastResponseHeaders = $headers;
+        $this->lastResponse = $data;
         $this->debug('Entering parseResponse() for data of length ' . strlen($data) . ' headers:');
         $this->appendDebug($this->varDump($headers));
         if (!isset($headers['content-type'])) {
@@ -1004,6 +1017,16 @@ class Client extends Base
             }
         }
         return true;
+    }
+
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
+
+    public function getLastResponseHeaders()
+    {
+        return $this->lastResponseHeaders;
     }
 }
 

@@ -28,7 +28,6 @@ class Client extends Base
     public $password = '';             // Password for HTTP authentication
     public $authtype = '';             // Type of HTTP authentication
     public $certRequest = [];     // Certificate for HTTP SSL authentication
-    public $requestHeaders = false;    // SOAP headers in request (text)
     public $responseHeaders = '';      // SOAP headers from response (incomplete namespace resolution) (text)
     public $responseHeader = null;     // SOAP Header from response (parsed)
     public $document = '';             // SOAP body response portion (incomplete namespace resolution) (text)
@@ -46,7 +45,6 @@ class Client extends Base
     public $endpointType = '';         // soap|wsdl, empty for WSDL initialization error
     public $persistentConnection = false;
     public $defaultRpcParams = false;  // This is no longer used
-    public $request = '';              // HTTP request
     public $response = '';             // HTTP response
     public $responseData = '';         // SOAP payload of response
     public $cookies = [];         // Cookies from response or for request
@@ -56,6 +54,16 @@ class Client extends Base
     public $bindingType = '';          // WSDL operation binding type
     public $use_curl = false;          // whether to always try to use cURL
 
+    /**
+     * @var string Stores the request sent with the last call (e.g. for
+     *  logging purposes, analysis or debugging).
+     */
+    private $lastRequest;
+    /**
+     * @var array Stores the headers sent with the last call (e.g. for
+     *  logging purposes, analysis or debugging).
+     */
+    private $requestHeaders;
     /**
      * @var string Stores the response retrieved by the last call (e.g. for
      *  logging purposes, analysis or debugging).
@@ -170,7 +178,7 @@ class Client extends Base
         $this->operation = $operation;
         $this->fault = false;
         $this->setError('');
-        $this->request = '';
+        $this->lastRequest = '';
         $this->response = '';
         $this->responseData = '';
         $this->faultstring = '';
@@ -464,7 +472,7 @@ class Client extends Base
                 } else {
                     $this->setError('no http/s in endpoint url');
                 }
-                $this->request = $http->outgoing_payload;
+                $this->lastRequest = $http->outgoing_payload;
                 $this->response = $http->incoming_payload;
                 $this->appendDebug($http->getDebug());
                 $this->UpdateCookies($http->incoming_cookies);
@@ -1017,6 +1025,16 @@ class Client extends Base
             }
         }
         return true;
+    }
+
+    public function getLastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    public function getLastRequestHeaders()
+    {
+        return $this->requestHeaders;
     }
 
     public function getLastResponse()

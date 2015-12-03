@@ -2,6 +2,8 @@
 
 namespace Newsoap;
 
+use SimpleXMLElement;
+
 /**
 *
 * [nu]soapclient higher level class for easy usage.
@@ -226,9 +228,12 @@ class Client extends Base
             } elseif (is_array($params)) {
                 $this->debug("serializing param array for WSDL operation $operation");
                 $payload = $this->wsdl->serializeRPCParameters($operation,'input',$params,$this->bindingType);
+            } elseif (is_object($params) && $params instanceof SimpleXMLElement) {
+                $params->addAttribute('xmlns', $this->wsdl->namespaces['wsdl']);
+                $payload = $params->asXML();
             } else {
-                $this->debug('params must be array or string');
-                $this->setError('params must be array or string');
+                $this->debug('params must be array or string or SimpleXMLElement');
+                $this->setError('params must be array or string or SimpleXMLElement');
                 return false;
             }
             $usedNamespaces = $this->wsdl->usedNamespaces;

@@ -229,8 +229,9 @@ class Client extends Base
                 $this->debug("serializing param array for WSDL operation $operation");
                 $payload = $this->wsdl->serializeRPCParameters($operation,'input',$params,$this->bindingType);
             } elseif (is_object($params) && $params instanceof SimpleXMLElement) {
-                $params->addAttribute('xmlns', $this->wsdl->namespaces['wsdl']);
+                $params->addAttribute('xmlns', $this->wsdl->namespaces['tns']);
                 $payload = $params->asXML();
+                $payload = preg_replace("@^<\?xml.*?>\n@", '', $payload);
             } else {
                 $this->debug('params must be array or string or SimpleXMLElement');
                 $this->setError('params must be array or string or SimpleXMLElement');
